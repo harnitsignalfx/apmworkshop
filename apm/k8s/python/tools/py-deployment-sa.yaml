@@ -20,7 +20,9 @@ spec:
           - name: http
             containerPort: 5000
         env:
-        - name: SPLUNK_SERVICE_NAME
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: deployment.environment=apm-workshop
+        - name: OTEL_SERVICE_NAME
           value: server-flask-otel-k8s
         - name: SPLUNK_OTEL_AGENT
           valueFrom:
@@ -28,8 +30,8 @@ spec:
               fieldPath: status.hostIP
         - name: OTEL_EXPORTER_JAEGER_ENDPOINT
           value: http://$(SPLUNK_OTEL_AGENT):9080/v1/trace
-        - name: OTEL_RESOURCE_ATTRIBUTES
-          value: deployment.environment=apm-workshop
+        - name: OTEL_TRACES_EXPORTER
+          value: jaeger-thrift-splunk
         command: ["/bin/sh"]
         args: ["run-server.sh"]
 ---
@@ -56,15 +58,17 @@ spec:
   - name: client-py-otel-k8s
     image: docker.io/stevelsplunk/splk-python
     env:
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: deployment.environment=apm-workshop
+    - name: OTEL_SERVICE_NAME
+      value: client-py-otel-k8s
     - name: SPLUNK_OTEL_AGENT
       valueFrom:
         fieldRef:
           fieldPath: status.hostIP
     - name: OTEL_EXPORTER_JAEGER_ENDPOINT
       value: http://$(SPLUNK_OTEL_AGENT):9080/v1/trace
-    - name: OTEL_RESOURCE_ATTRIBUTES
-      value: deployment.environment=apm-workshop
-    - name: SPLUNK_SERVICE_NAME
-      value: client-py-otel-k8s
-    command: [ "/bin/bash", "-c", "--" ]
-    args: [ "while true; do sleep 30; done;" ]
+    - name: OTEL_TRACES_EXPORTER
+      value: jaeger-thrift-splunk
+    command: ["/bin/sh"]
+    args: ["run-client.sh"]

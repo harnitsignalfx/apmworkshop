@@ -22,7 +22,8 @@ sudo apt install -y openjdk-8-jdk
 sudo apt install -y python3-pip
 
 #install python dependencies 
-python3 -m pip install -r requirements.txt
+export PATH="$HOME/.local/bin:$PATH" 
+python3 -m pip install -r https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/requirements.txt
 splk-py-trace-bootstrap
 
 #enable helm to access cluster
@@ -32,5 +33,15 @@ sudo chmod 755 /etc/rancher/k3s/k3s.yaml
 #install text browser
 sudo apt install -y lynx
 
+#install k9s
+curl -sS https://webinstall.dev/k9s | bash
+
 #clone workshop
 git clone https://github.com/signalfx/apmworkshop
+
+#update .bashrc for workshop
+curl https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/bashrc -o bashrc
+echo -e "\n\n" >> /home/ubuntu/.bashrc
+cat bashrc >> /home/ubuntu/.bashrc
+rm bashrc
+source /home/ubuntu/.bashrc

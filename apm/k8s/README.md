@@ -6,13 +6,12 @@ Identify your token and realm from the Splunk Observability Cloud Portal:
 `Organization Settings->Access Tokens` and `Your Name->Account Settings`  
 
 <ins>If using your own k8s cluster on an Ubuntu host</ins> use this setup script:  
-`bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/tools/k8s-env-only.sh)`  
+`bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/k8s-env-only.sh)`
 
 or ensure you have `helm` and `lynx` installed...
 
 And then skip to:  
 Exercise 2: Deploy APM for containerized apps: Python and Java
-
 
 ***
 
@@ -69,8 +68,15 @@ The deployment name would be: `splunk-otel-collector-1620504591`
 
 **Prepare values for Collector update**  
 
-`helm list`  
+If you run into any errors from helm, fix with:  
+```
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+sudo chmod 755 /etc/rancher/k3s/k3s.yaml
+```
 
+Prep values for collector update:  
+
+`helm list`  
 `helm get values NAME`  
 
 i.e. `helm get values splunk-otel-collector-1620609739`
@@ -170,11 +176,34 @@ i.e.
 
 ***
 
-## Advanced APM Topics: Manual instrumenation, span processing, JVM monitoring
+## Advanced APM Topics: Manual Java instrumenation, span processing, JVM monitoring, Prometheus
 
-### Exercise 6: Monitor JVM metrics for a Java container (coming soon)
+### Exercise 6: Monitor JVM metrics for a Java container
 
-See [JVM Metrics at end of section](./collectorconfig/README.md)  
+JVM Metrics are emitted by the Splunk OpenTelemetry Java instrumentation and send to the Collector.  
+
+A dashboard template for JVM metrics works as follows:  
+
+Load the JVM Metrics Template:  
+
+Download this file to your local machine:  
+https://raw.githubusercontent.com/signalfx/apmworkshop/master/apm/k8s/dashboard_JVMMetrics.json  
+
+In `Dashboards` open any `Sample Data->Sample Charts` `+` and select `Import Dashboard`  
+
+Import the `dashboard_JVMMetrics.json` Dashboard.  
+
+<img src="../assets/30-import-dash.png" width="360">    
+
+All JVM Metrics  
+
+<img src="../assets/27-jvm.png" width="360">    
+
+Filter by Application by adding `service:SERVICENAMEHERE`  
+
+<img src="../assets/28-jvm-filter.png" width="360">    
+
+Complete JVM metrics available [at this link](https://github.com/signalfx/splunk-otel-java/blob/main/docs/metrics.md#jvm)
 
 Remote JMX metrics are also available via this monitor:  https://docs.splunk.com/Observability/gdi/genericjmx/genericjmx.html  
 
@@ -221,11 +250,60 @@ See [Processing Spans](./collectorconfig/README.md)
 
 ***
 
+### Exercise 9: Scrape Prometheus Metrics
+
+**Add a Prometheus endpoint pod**  
+
+Change to the k8s directory:  
+`cd ~/apmworkshop/apm/k8s`  
+
+Add the Prometheus pod (source code is in the `k8s/python` directory):
+`kubectl apply -f prometheus-deployment.yaml`
+
+**Update Otel Collector to scrape the Prometheus pod**
+
+Change to the examples directory:  
+`cd ~/apmworkshop/apm/k8s/collectorconfig`
+
+Update realm/token/cluster in the `otel-prometheus.yaml`  
+
+Update collector:  
+`helm list`
+
+`relm upgrade --reuse-values splunk-otel-collector-YOURCOLLECTORVALUE --values otel-prometheus.yaml splunk-otel-collector-chart/splunk-otel-collector`  
+
+**Find Prometheus metric and generate chart**
+
+`Splunk Observabilty -> Menu -> Metrics -> Metric Finder`  
+
+Search for: `customgauge`  
+
+Click `CustomGauge`  
+
+Chart appears with value 17  
+
+***
+
+### Exercise 10: Advanced Troubleshooting  
+
+Examine initial configmap of the Otel Collector:  
+
+**Get list of configmaps**  
+`kubectl get configmap`  
+You'll see something like: `splunk-otel-collector-1625344942-otel-agent`
+
+**View initial configmap that was installed** 
+Substitute your agent install value i.e. `1625344942` with the one from your list:  
+`kubectl get configmap splunk-otel-collector-1625344942-otel-agent -o yaml`
+
+***
+
 ### Clean up deployments and services
 
 To delete all k8s lab work:  
 in `~/apmworkshop/apm/k8s/`  
 `source delete-all-k8s.sh`  
+`source delete-prometheus.sh`  
 
 To delete the Collector from k8s:  
 `helm list`  

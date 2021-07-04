@@ -27,7 +27,7 @@ You can use any Ubuntu platform- bare metal, VM, or cloud VM.
 You can choose an existing Ubuntu machine that you have or create or you can follow our guide below to make an Ubuntu VM on your Mac / Windows PC.  
 If you chose your own Ubuntu machine, you can set it up with the Workshop software with this command: 
 
-`bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/tools/ubuntu.sh)`
+`bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/ubuntu.sh)`
 
 #### Guide: Create an Ubuntu Linux environment on a Mac or PC and install the necessary software components:
 
@@ -81,15 +81,11 @@ To manage multipass VM:
 A bootstrap script will install everything needed and clone this repo.  
 This will take up to 10 minutes to execute- leave it running until complete.  
 
-**From your command line (not logged into the Multipass "primary" VM):**  
+`multipass shell primary`  
 
-Linux / Mac:  
-`bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/tools/multipass.sh)`
+Once in your Multipass Ubuntu VM:
 
-Windows:  
-`multipass exec primary -- curl https://raw.githubusercontent.com/signalfx/apmworkshop/master/tools/multipass.sh -o multipass.sh`  
-
-`multipass exec primary -- sh multipass.sh`
+`bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/ubuntu.sh)`
 
 ---
 

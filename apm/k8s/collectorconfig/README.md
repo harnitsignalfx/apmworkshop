@@ -16,10 +16,10 @@ Full documentation: https://github.com/signalfx/splunk-otel-collector
 
 i.e. `helm get values splunk-otel-collector-1620609739`
 
-make note of:
-`clusterNAME`
-`splunkAccessToken`
-`splunkRealm`
+make note of:  
+`clusterNAME`  
+`splunkAccessToken`  
+`splunkRealm`  
 
 ###
 
@@ -34,7 +34,7 @@ Edit `spanprocessor.yaml` with thes values from Step 1.
 Install the Collector configuration chart:  
 
 ```
-helm upgrade \
+helm upgrade --install \ 
 YOURCOLLECTORHERE \
 --values spanprocessor.yaml \
 splunk-otel-collector-chart/splunk-otel-collector
@@ -43,7 +43,7 @@ splunk-otel-collector-chart/splunk-otel-collector
 i.e.
 
 ```
-helm upgrade \
+helm upgrade  --install \
 splunk-otel-collector-1620609739 \
 --values spanprocessor.yaml \
 splunk-otel-collector-chart/splunk-otel-collector
@@ -59,74 +59,19 @@ Example `my.key` and you'll see that the value is `redacted`
 
 <img src="../../assets/25-span-redacted.png" width="360">  
 
+**Step SP4: Updating any config or adding new configs**  
 
-If you want to make changes and update the `spanprocessor.yaml` or any values file, use:  
-`helm upgrade --resuse-values` when re-applying i.e.  
+If you want to make changes and update the `spanprocessor.yaml` or add more configurations, use:  
+`helm upgrade --resuse-values`
 
-```
-helm upgrade \
---reuse-values splunk-otel-collector-1620655507 \
---values spanprocessor.yaml \
-splunk-otel-collector-chart/splunk-otel-collector
-```
+To see the structure of the inital Collector config:  
 
-###
+**Get list of configmaps**  
+`kubectl get configmap`  
+You'll see something like: `splunk-otel-collector-1625344942-otel-agent`
 
-## JVM Metrics
-
-Note that for JVM Metrics to work, the deployment .yaml must have JVM metrics enabled as shown below. Our `java-deployment.yaml` example already has this and is publishing JVM metrics.  
-
-```
-    - name: SPLUNK_METRICS_ENDPOINT
-      value: http://$(SPLUNK_OTEL_AGENT):9943
-```
-
-**Step JVM1: Prepare values.yaml file for updating the Helm chart**  
-
-Edit `metricsreceiver.yaml` with thes values from Step 1.  
-
-**Step JVM2: Update the Collector** 
-
-Install the Collector configuration chart:  
-
-```
-helm upgrade \
-YOURCOLLECTORHERE \
---values metricsreceiver.yaml \
-splunk-otel-collector-chart/splunk-otel-collector
-```
-
-i.e.
-
-```
-helm upgrade \
-splunk-otel-collector-1620609739 \
---values metricsreceiver.yaml \
-splunk-otel-collector-chart/splunk-otel-collector
-```
-
-**Step JVM: Study the results**  
-
-Load the JVM Metrics Template:  
-
-Download this file to your local machine:  
-https://raw.githubusercontent.com/signalfx/apmworkshop/master/apm/k8s/dashboard_JVMMetrics.json 
-
-
-In `Dashboards` open any `Sample Data->Sample Charts` `+` and select `Import Dashboard`  
-
-Import the `dashboard_JVMMetrics.json` Dashboard.
-
-<img src="../../assets/30-import-dash.png" width="360">  
-
-All JVM Metrics  
-
-<img src="../../assets/27-jvm.png" width="360">    
-
-Filter by Application by adding `service:SERVICENAMEHERE`  
-
-<img src="../../assets/28-jvm-filter.png" width="360">    
-
-Complete JVM metrics available [at this link](https://github.com/signalfx/splunk-otel-java/blob/main/docs/metrics.md#jvm)
+**View initial configmap that was installed** 
+Substitute your agent install value i.e. `1625344942` with the one from your list:  
+`kubectl get configmap splunk-otel-collector-1625344942-otel-agent -o yaml`
 
 [Click here to return to k8s APM lab](../README.md)

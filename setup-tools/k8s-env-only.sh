@@ -16,7 +16,12 @@ sudo apt install -y lynx
 #clone workshop
 git clone https://github.com/signalfx/apmworkshop
 
+#install k9s
+curl -sS https://webinstall.dev/k9s | bash
+
 #update .bashrc for workshop
+curl https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/bashrc -o bashrc
 echo -e "\n\n" >> /home/ubuntu/.bashrc
 cat bashrc >> /home/ubuntu/.bashrc
+rm bashrc
 source /home/ubuntu/.bashrc

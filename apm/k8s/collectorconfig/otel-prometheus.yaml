@@ -1,0 +1,18 @@
+clusterName: YOURCLUSTERHERE
+splunkRealm: YOUREREALMHERE
+splunkAccessToken: YOURTOKENHERE
+
+otelAgent:
+  config:
+    receivers:
+      prometheus_simple:
+        endpoint: "prometheus:9090"
+    service:
+      pipelines:
+        metrics:
+          receivers:
+            - hostmetrics
+            - kubeletstats
+            - receiver_creator
+            - signalfx
+            - prometheus_simple

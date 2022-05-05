@@ -1,5 +1,9 @@
 ## Splunk Observability Cloud: OpenTelemetry Collector / APM Instrumentation Workshop
 
+### Credit
+This workshop is a subset of the workshop put together by [Steve Lerner](https://github.com/stevelerner).
+The original workshop can be found [here](https://github.com/stevelerner/apmworkshop).
+
 ### Start Here: [APM Instrumentation Workshop](./apm)  
 
 **Workshop Activities**

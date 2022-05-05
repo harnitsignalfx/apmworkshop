@@ -7,15 +7,32 @@ Please see [Step 1](../workshop-steps/1-prep.md) to prep your environment with J
 Make sure that you still have the Python Flask server from Lab #2 running. If you accidentally shut it down follow steps from Workshop #2 to restart the Python Flask server.
 
 Make sure you are in the right directory to start the Java activities:  
-`cd ~/apmworkshop/apm/java`
+
+```
+cd ~/apmworkshop/apm/java
+```
 
 #### Step #2 Download Splunk OpenTelemetry Java Auto-instrumentation to /opt
 
-`source install-java-otel.sh`
+```
+sudo curl -L https://github.com/signalfx/splunk-otel-java/releases/latest/download/splunk-otel-javaagent-all.jar -o /opt/splunk-otel-javaagent.jar
+sudo chmod 755 /opt/splunk-otel-javaagent.jar
+```
 
 #### Step #3 Run the Java example with OKHTTP requests
 
-`source run-client.sh`  
+```
+# Setup OTEL env variables
+## Set the Service Name and APM environment name
+export OTEL_RESOURCE_ATTRIBUTES=service.name=java-otel-client,deployment.environment=apm-workshop
+
+# Send traces to the otlp grpc port (4317) of the locally running otel-collector
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
+
+# Run and auto-instrument the java client application
+java -Dexec.executable="java" -javaagent:/opt/splunk-otel-javaagent.jar -jar ./target/java-app-1.0-SNAPSHOT.jar
+```
+
 You will see requests printed to the window.
 
 #### Step #4 Traces / services will now be viewable in the APM dashboard
@@ -35,21 +52,13 @@ You should now see a new Java requests service alongside the Python one.
 
 #### Step #5 Where is the auto-instrumentation?
 
-In the `run-client.sh` script is the java command:
+In the java command there is a reference to the "javaagent"
 
 ```
-java \
--Dexec.executable="java" \
--Dotel.resource.attributes=service.name=java-otel-client,deployment.environment=apm-workshop \
--Dotel.exporter.otlp.endpoint=http://127.0.0.1:4317 \
--Dsplunk.metrics.endpoint=http://127.0.0.1:9943 \
--javaagent:/opt/splunk-otel-javaagent.jar \
--jar ./target/java-app-1.0-SNAPSHOT.jar
+-javaagent:/opt/splunk-otel-javaagent.jar
 ```
 
 The `splunk-otel-javaagent.jar` file is the automatic OpenTelemetry instrumentation that will emit spans from the app. No code changes are necessary.
-
-The `otel.` resources set up the service name, environment, and destination to send the JVM metrics and spans.  
 
 Splunk's OpenTelmetry autoinstrumentation for Java is here: https://github.com/signalfx/splunk-otel-java
 

@@ -9,14 +9,14 @@ Each set of steps should be executed in a new terminal window.
 ```
 cd ~/apmworkshop/apm/python
 
-# set up OTEL env variables
-## set the service name and the APM environment name
+# Setup OTEL env variables
+## Set the service name and the APM environment name
 export OTEL_RESOURCE_ATTRIBUTES=service.name=py-otel-flask-server,deployment.environment=apm-workshop
 
-## send the traces to the otlp grpc port (4317) of the locally running otel-collector 
+## Send traces to the otlp grpc port (4317) of the locally running otel-collector 
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
 
-# run and auto-instrument the python server application
+# Run and auto-instrument the python server application
 splunk-py-trace python3 flask-server.py
 ```
 
@@ -29,14 +29,14 @@ Open a new terminal window to your Linux instance and run the Python client to s
 ```
 cd ~/apmworkshop/apm/python
 
-# set up OTEL env variables
-## set the service name and the APM environment name
+# Setup OTEL env variables
+## Set the service name and the APM environment name
 export OTEL_RESOURCE_ATTRIBUTES=service.name=py-otel-reqs-client,deployment.environment=apm-workshop
 
-## send the traces to the otlp grpc port (4317) of the locally running otel-collector 
+## Send traces to the otlp grpc port (4317) of the locally running otel-collector 
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
 
-# run and auto-instrument the python client application
+# Run and auto-instrument the python client application
 splunk-py-trace python3 python-requests.py
 ```
 

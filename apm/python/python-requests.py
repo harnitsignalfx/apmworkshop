@@ -1,9 +1,8 @@
 import requests
 from time import sleep
-from random import random, seed
+import random
 import json
 
-seed(1)
 url = 'http://localhost:5000/echo'
 
 def pythonrequests():
@@ -23,6 +22,5 @@ def pythonrequests():
 
 while True:
     pythonrequests()
-    y = random()
-    #print('Sleeping: ', round(y,2))
+    y = random.random()
     sleep(round(y,2))

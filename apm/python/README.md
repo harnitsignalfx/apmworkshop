@@ -66,7 +66,7 @@ Click on Troubleshooting to see the map with latency, errors, etc
 
 Try the Tag Spotlight view of Span Tags  
 
-#### Step #5 Where is the auto-instrumentation?
+#### Step #4 Where is the auto-instrumentation?
 
 `splunk-py-trace` is the auto instrumenting function that runs Python3 with the instrumentation that automatically emits spans from the Python app. No code changes are necessary.
 
@@ -75,8 +75,10 @@ Splunk Observability Cloud has a `Getting Data In` Wizard to guide through instr
 OpenTelemetry repo for python is here: https://github.com/signalfx/splunk-otel-python
 
 
-#### Step #6 Leave the Flask server running
+#### Step #5 Leave the Flask server running
 
 You'll need need this process for the next client examples in the workshop.  
 
-You can now go to the next step of [APM Instrumentation Workshop Labs](../workshop-steps/3-workshop-labs.md)
+You can now go to the next step of the lab [Java: traces from OKHttp client](../java)
+
+[Return to APM Instrumentation Workshop Labs](../workshop-steps/3-workshop-labs.md)

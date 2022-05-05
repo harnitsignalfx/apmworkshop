@@ -19,7 +19,7 @@ Follow Data Setup Wizard for instructions on Linux installation:
 
 ----
 
-[Return to workshop for next step](../README.md)
+[Return to workshop](../README.md)
 
 Previous Step (1): [Pre-work: Choose/Prepare Your Sandbox Environment and Review Key Concepts](./1-prep.md)
 

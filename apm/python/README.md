@@ -4,39 +4,46 @@
 
 `multipass shell primary`
 
-It is recommended to do each step in a `tmux` terminal- run `tmux` and do each step in a separate pane: https://tmuxcheatsheet.com/  
-Otherwise you can do each step in a new terminal window.  
+Each set of steps should be executed in a new terminal window.  
 
 ```
 cd ~/apmworkshop/apm/python
-source run-server.sh
+
+# set up OTEL env variables
+## set the service name and the APM environment name
+export OTEL_RESOURCE_ATTRIBUTES=service.name=py-otel-flask-server,deployment.environment=apm-workshop
+
+## send the traces to the otlp grpc port (4317) of the locally running otel-collector 
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
+
+# run and auto-instrument the python server application
+splunk-py-trace python3 flask-server.py
 ```
 
 You will see the server startup text when this is run.
 
-#### Step #2 Run the client python app via the `splk-py-trace` command to send requests to the Flask server
+#### Step #2 Run the client python app via the `splunk-py-trace` command to send requests to the Flask server
 
-Open a new terminal window to your Linux instance and run the Python client to sent POST requests to the Flask server (or use `tmux` and run in separate pane)
+Open a new terminal window to your Linux instance and run the Python client to sent POST requests to the Flask server
 
 ```
 cd ~/apmworkshop/apm/python
-source run-client.sh
+
+# set up OTEL env variables
+## set the service name and the APM environment name
+export OTEL_RESOURCE_ATTRIBUTES=service.name=py-otel-reqs-client,deployment.environment=apm-workshop
+
+## send the traces to the otlp grpc port (4317) of the locally running otel-collector 
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
+
+# run and auto-instrument the python client application
+splunk-py-trace python3 python-requests.py
 ```
 
 The `python-requests.py` client will make calls to the flask server with a random short sleep time.
 You can stop the requests with `ctrl-c`
 
-#### Step #3 Check OpenTelemetry Collector Statistics to see that spans are being sent
-
-Open a new terminal window to your Linux instance (or use `tmux` and run in separate pane)
-
-`lynx localhost:55679/debug/tracez` will show the metrics and spans being gathered and sent by the Collector.  
-
-Lynx is a text browser that was installed during with the `setup-tools`. Enabling a web browser to access your environment will allow for a full web GUI.  
-
-<img src="../assets/06-zpages.png" width="360"> 
-
-#### Step #4 Traces / services will now be viewable in the APM dashboard
+#### Step #3 Traces / services will now be viewable in the APM dashboard
 
 A new service takes about 90 seconds to register for the first time, and then all data will be available in real time.  
 Additionally span IDs will print in the terminal where flask-server.py is running.  
@@ -61,9 +68,7 @@ Try the Tag Spotlight view of Span Tags
 
 #### Step #5 Where is the auto-instrumentation?
 
-The `run-server.sh` and `run-client.sh` scripts set up the environment variables for OpenTelemetry and invoke the Python auto instrumentation:  
-
-`splk-py-trace` is the auto instrumenting function that runs Python3 with the instrumentation that automatically emits spans from the Python app. No code changes are necessary.
+`splunk-py-trace` is the auto instrumenting function that runs Python3 with the instrumentation that automatically emits spans from the Python app. No code changes are necessary.
 
 Splunk Observability Cloud has a `Getting Data In` Wizard to guide through instrumentation setup.
 

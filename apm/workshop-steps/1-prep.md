@@ -13,10 +13,13 @@ How to find realm:
 <img src="../assets/01-realm.png" width="360" />  
 
 How to find token:  
+1. Click on the gear icon on the left nav bar
 <img src="../assets/02-token-1.png" width="360" />  
 
+2. Click on Access Tokens
 <img src="../assets/02-token-2.png" width="360" />  
 
+3. Select an access token (such as Default) and click Show Token and note the value
 <img src="../assets/02-token-3.png" width="360" />  
 
 ---

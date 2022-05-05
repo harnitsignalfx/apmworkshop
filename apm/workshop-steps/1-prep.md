@@ -8,12 +8,16 @@ Check your [Splunk Observability Account](https://app.us1.signalfx.com/o11y/#/ho
 
 How to find realm:
 
-`Splunk Observability Menu -> Your Name -> Account Settings`    
+`Splunk Observability Url -> Find your realm https://app.<realm>.signalfx.com`    
 
 <img src="../assets/01-realm.png" width="360" />  
 
 How to find token:  
-<img src="../assets/02-token.png" width="360" />  
+<img src="../assets/02-token-1.png" width="360" />  
+
+<img src="../assets/02-token-2.png" width="360" />  
+
+<img src="../assets/02-token-3.png" width="360" />  
 
 ---
 

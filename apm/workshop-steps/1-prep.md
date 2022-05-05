@@ -89,4 +89,6 @@ Once in your Multipass Ubuntu VM:
 
 ---
 
-[Return to workshop for next step](../README.md)
+[Return to workshop](../README.md)
+
+Next Step (2): [Install Splunk OpenTelemetry Collector Agent on an Ubuntu host](./2-otelagent.md)

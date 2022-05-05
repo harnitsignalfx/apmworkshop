@@ -10,4 +10,8 @@
 
 [Read the full Splunk APM guide on troubleshooting apps, dashboards, etc](https://docs.splunk.com/Observability/apm/apm.html)
 
+-----
+
 [Return to workshop](../README.md)
+
+Previous Step (2): [Install Splunk OpenTelemetry Collector Agent on an Ubuntu host](./2-otelagent.md)

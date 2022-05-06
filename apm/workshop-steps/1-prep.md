@@ -34,7 +34,9 @@ You can use any Ubuntu platform- bare metal, VM, or cloud VM.
 You can choose an existing Ubuntu machine that you have or create or you can follow our guide below to make an Ubuntu VM on your Mac / Windows PC.  
 If you chose your own Ubuntu machine, you can set it up with the Workshop software with this command: 
 
-`bash <(curl -s https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/ubuntu.sh)`
+```
+bash <(curl -s https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/ubuntu.sh)
+```
 
 #### Guide: Create an Ubuntu Linux environment on a Mac or PC and install the necessary software components:
 
@@ -43,25 +45,36 @@ If you chose your own Ubuntu machine, you can set it up with the Workshop softwa
 **#1 Install Brew**  
 
 Install [brew package manager](https://brew.sh):  
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` 
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
 Make sure `brew` is fully upgraded: `brew upgrade`
 
 Results should be at least 1.5:
+
 ```
-$ brew --version
-Homebrew 2.6.0
+brew --version
 ```
 
 **#2 Install Multipass**
 
 We will use [Multipass](https://multipass.run) as a hypervisor for Mac: 
 
-Install Multipass: `brew cask install multipass`
+Install Multipass: 
+
+```
+brew cask install multipass
+```
 
 If needed, further instructions are here: https://multipass.run/docs/installing-on-macos
 
-Do one final brew upgrade before spinning up VM: `brew upgrade`
+Do one final brew upgrade before spinning up VM: 
+
+```
+brew upgrade
+```
 
 #### <ins>Windows</ins>  
 
@@ -70,7 +83,10 @@ Follow Multipass Windows installation instructions: https://multipass.run/docs/i
 **#3 Launch Multipass Ubuntu VM**
 
 Create your VM called "primary":  
-`multipass launch -n primary`
+
+```
+multipass launch -n primary
+```
 
 This will download Ubuntu and may take a few minutes the first time.
 
@@ -88,11 +104,15 @@ To manage multipass VM:
 A bootstrap script will install everything needed and clone this repo.  
 This will take up to 10 minutes to execute- leave it running until complete.  
 
-`multipass shell primary`  
+```
+multipass shell primary 
+```
 
 Once in your Multipass Ubuntu VM:
 
-`bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/ubuntu.sh)`
+```
+bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/ubuntu.sh)
+```
 
 ---
 

@@ -16,7 +16,7 @@ splunk-py-trace-bootstrap
 git clone https://github.com/harnitsignalfx/apmworkshop
 
 #update .bashrc for workshop
-curl https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/bashrc -o bashrc
+curl https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/bashrc -o bashrc
 echo -e "\n\n" >> /home/ubuntu/.bashrc
 cat bashrc >> /home/ubuntu/.bashrc
 rm bashrc

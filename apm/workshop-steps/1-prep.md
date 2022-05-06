@@ -119,8 +119,15 @@ multipass shell primary
 
 Once in your Multipass Ubuntu VM:
 
+Setup Ubuntu
+
 ```
 bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/ubuntu.sh)
+```
+
+Update the path
+
+```
 source /home/ubuntu/.bashrc
 ```
 

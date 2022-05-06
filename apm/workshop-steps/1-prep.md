@@ -36,6 +36,7 @@ If you chose your own Ubuntu machine, you can set it up with the Workshop softwa
 
 ```
 bash <(curl -s https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/ubuntu.sh)
+source /home/ubuntu/.bashrc
 ```
 
 #### Guide: Create an Ubuntu Linux environment on a Mac or PC and install the necessary software components:
@@ -112,6 +113,7 @@ Once in your Multipass Ubuntu VM:
 
 ```
 bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/ubuntu.sh)
+source /home/ubuntu/.bashrc
 ```
 
 ---

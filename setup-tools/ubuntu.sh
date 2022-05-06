@@ -22,4 +22,3 @@ curl https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-t
 echo -e "\n\n" >> /home/ubuntu/.bashrc
 cat bashrc >> /home/ubuntu/.bashrc
 rm bashrc
-source /home/ubuntu/.bashrc

@@ -34,10 +34,18 @@ You can use any Ubuntu platform- bare metal, VM, or cloud VM.
 You can choose an existing Ubuntu machine that you have or create or you can follow our guide below to make an Ubuntu VM on your Mac / Windows PC.  
 If you chose your own Ubuntu machine, you can set it up with the Workshop software with this command: 
 
+Setup Ubuntu
+
 ```
 bash <(curl -s https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/ubuntu.sh)
+```
+
+Update the path
+
+```
 source /home/ubuntu/.bashrc
 ```
+
 
 #### Guide: Create an Ubuntu Linux environment on a Mac or PC and install the necessary software components:
 

@@ -62,4 +62,6 @@ The `splunk-otel-javaagent.jar` file is the automatic OpenTelemetry instrumentat
 
 Splunk's OpenTelmetry autoinstrumentation for Java is here: https://github.com/signalfx/splunk-otel-java
 
-You can now go to the next step of [APM Instrumentation Workshop](../workshop-steps/3-workshop-labs.md)
+Thats it! Congratulations, you've completed the final step of the workshop
+
+[APM Instrumentation Workshop](../workshop-steps/3-workshop-labs.md)

@@ -75,10 +75,10 @@ Splunk Observability Cloud has a `Getting Data In` Wizard to guide through instr
 OpenTelemetry repo for python is here: https://github.com/signalfx/splunk-otel-python
 
 
-#### Step #5 Leave the Flask server running
+#### Step #5 Leave both the Flask server and the client application running
 
-You'll need need this process for the next client examples in the workshop.  
+You'll need both terminal windows up and running for the next example in the workshop.  
 
-You can now go to the next step of the lab [Java: traces from OKHttp client](../java)
+You can now go to the next step of the lab [Python: add manual instrumentation](../python-manual)
 
 [Return to APM Instrumentation Workshop Labs](../workshop-steps/3-workshop-labs.md)

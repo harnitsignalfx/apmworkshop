@@ -4,7 +4,7 @@
 This workshop is a subset of the workshop put together by [Steve Lerner](https://github.com/stevelerner).
 The original workshop can be found [here](https://github.com/stevelerner/apmworkshop).
 
-### Start Here: [APM Instrumentation Workshop](./apm)  
+### Start Here: [APM Instrumentation Workshop](./apm/README.md)  
 
 **Workshop Activities**
 - Build a local Ubuntu VM Sandbox on Mac or Windows

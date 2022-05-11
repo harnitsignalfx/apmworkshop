@@ -2,7 +2,7 @@
 
 #### Step #1 Modify the python-requests.py file and add manual instrumentation
 
-1. Press Ctrl+C to shutdown the python client requests application
+1. Press `Ctrl+C` to shutdown the python client requests application
 2. Add the following lines (in green) and remember to adjust the indentation! Also, don't put in the `+` sign in your code)
 
 ```diff
@@ -19,7 +19,7 @@ def pythonrequests():
     try:
 +        tracer = trace.get_tracer(__name__)
 +        with tracer.start_as_current_span("send request"):
-+            with tracer.start_as_current_span("child_span") as child:
++            with tracer.start_as_current_span("child span") as child:
 +                child.set_attribute("operation.name","sleeping!")
 +                sleep(2)
 
@@ -83,8 +83,9 @@ the action just as we specified in our code.
 
 #### Step #5 Leave the flask server running for the next exercise
 
-You'll need the flask server running but you can shutdown the manually instrumented client for the next exercise in the workshop.  
+You'll need the flask server running but you can shutdown the manually instrumented client via `Ctrl+C` for the next 
+exercise in the workshop.  
 
-You can now go to the next step of the lab [Java: traces from OKHttp client](../java)
+You can now go to the next step of the lab [Java: traces from OKHttp client](../java/README.md)
 
 [Return to APM Instrumentation Workshop Labs](../workshop-steps/3-workshop-labs.md)

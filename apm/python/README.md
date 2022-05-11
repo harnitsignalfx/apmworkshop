@@ -79,6 +79,6 @@ OpenTelemetry repo for python is here: https://github.com/signalfx/splunk-otel-p
 
 You'll need both terminal windows up and running for the next example in the workshop.  
 
-You can now go to the next step of the lab [Python: add manual instrumentation](../python-manual)
+You can now go to the next step of the lab [Python: add manual instrumentation](../python-manual/README.md)
 
 [Return to APM Instrumentation Workshop Labs](../workshop-steps/3-workshop-labs.md)

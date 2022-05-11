@@ -34,7 +34,7 @@ You can use any Ubuntu platform- bare metal, VM, or cloud VM.
 You can choose an existing Ubuntu machine that you have or create or you can follow our guide below to make an Ubuntu VM on your Mac / Windows PC.  
 If you chose your own Ubuntu machine, you can set it up with the Workshop software with this command: 
 
-Setup Ubuntu
+#### <ins>Setup Ubuntu</ins>
 
 ```
 bash <(curl -s https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/ubuntu.sh)
@@ -48,6 +48,8 @@ source /home/ubuntu/.bashrc
 
 
 #### Guide: Create an Ubuntu Linux environment on a Mac or PC and install the necessary software components:
+
+---
 
 #### <ins>Mac</ins>
 
@@ -85,22 +87,27 @@ Do one final brew upgrade before spinning up VM:
 brew upgrade
 ```
 
+---
+
 #### <ins>Windows</ins>  
 
 Follow Multipass Windows installation instructions: https://multipass.run/docs/installing-on-windows
 
+---
+
 **#3 Launch Multipass Ubuntu VM**
 
-Create your VM called "primary":  
+Create your VM with the same name as your email prefix. E.g. for jsmith@splunk.com use the name "jsmith".
+Since we want this host name to be unique to you: 
 
 ```
-multipass launch -n primary
+multipass launch -n <your-email-prefix>
 ```
 
 This will download Ubuntu and may take a few minutes the first time.
 
 Basic multipass commands:  
-Shell into VM: `multipass shell primary`  
+Shell into VM: `multipass shell <your-email-prefix>`  
 Exit VM: `exit`
 
 To manage multipass VM:  
@@ -114,7 +121,7 @@ A bootstrap script will install everything needed and clone this repo.
 This will take up to 10 minutes to execute- leave it running until complete.  
 
 ```
-multipass shell primary 
+multipass shell <your-email-prefix>
 ```
 
 Once in your Multipass Ubuntu VM:
@@ -122,7 +129,7 @@ Once in your Multipass Ubuntu VM:
 Setup Ubuntu
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/signalfx/apmworkshop/master/setup-tools/ubuntu.sh)
+bash <(curl -s https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/ubuntu.sh)
 ```
 
 Update the path

@@ -4,7 +4,7 @@
 
 ### Workshop
 
-Step 1: [Pre-work: Choose/Prepare Your Sandbox Environment and Review Key Concepts](./workshop-steps/1-prep.md)  
+Step 1: [Pre-work: Choose/Prepare Your Sandbox Environment and Review Key Concepts](./workshop-steps/1-prep.md#apm-preparation)  
 
 Step 2: [Install Splunk OpenTelemetry Collector Agent on an Ubuntu host](./workshop-steps/2-otelagent.md)  
 

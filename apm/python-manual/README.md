@@ -3,7 +3,8 @@
 #### Step #1 Modify the python-requests.py file and add manual instrumentation
 
 1. Press `Ctrl+C` to shutdown the python client requests application
-2. Add the following lines (in green) and remember to adjust the indentation! Also, don't put in the `+` sign in your code)
+2. Navigate to `~/apmworkshop/apm/python-manual` and open `python-requests.py` for editing using vim or your favorite editor
+3. Add the following lines (in green) and remember to adjust the indentation! Also, don't put in the `+` sign in your code)
 
 ```diff
 import requests
@@ -75,7 +76,7 @@ If you open an example trace, you'll see 2 new spans -
 1. "send request" is our new parent span
 2. "child span" is our new child span
 
-The rest of the spans are auto-instrumented! 
+The rest of the spans are auto-instrumented as before! 
 
 3. If you expand on the "child span", you'll notice the operation.name tag set as "sleeping!" describing 
 the action just as we specified in our code.

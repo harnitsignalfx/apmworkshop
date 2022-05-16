@@ -4,10 +4,14 @@ sudo apt-get -y update
 
 #install Java
 sudo apt install -y openjdk-8-jdk
-#sudo apt-get -y install maven
+sudo apt install default-jre
+sudo apt-get -y install maven
 
 #install python pip
 sudo apt install -y python3-pip
+
+#install docker
+sudo apt install docker.io
 
 #install python dependencies 
 export PATH="$HOME/.local/bin:$PATH" 

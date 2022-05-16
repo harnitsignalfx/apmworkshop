@@ -21,6 +21,12 @@ splunk-py-trace-bootstrap
 #clone workshop
 git clone https://github.com/harnitsignalfx/apmworkshop
 
+#clone okhttp-and-jedis and build it
+git clone https://github.com/signalfx/tracing-examples.git
+cp -r ./tracing-examples/opentelemetry-tracing/opentelemetry-java-tracing/okhttp-and-jedis ./apmworkshop/
+cd ./apmworkshop/okhttp-and-jedis && mvn package
+cd ~
+
 #update .bashrc for workshop
 curl https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/bashrc -o bashrc
 echo -e "\n\n" >> /home/ubuntu/.bashrc

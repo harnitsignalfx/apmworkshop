@@ -13,6 +13,9 @@ sudo apt install -y python3-pip
 #install docker
 sudo apt install -y docker.io
 
+#install apache webserver
+sudo apt install -y apache2
+
 #install python dependencies 
 export PATH="$HOME/.local/bin:$PATH" 
 python3 -m pip install -r https://raw.githubusercontent.com/harnitsignalfx/apmworkshop/master/setup-tools/requirements.txt

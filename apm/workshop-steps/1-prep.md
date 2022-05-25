@@ -76,7 +76,7 @@ We will use [Multipass](https://multipass.run) as a hypervisor for Mac:
 Install Multipass: 
 
 ```
-brew cask install multipass
+brew install multipass
 ```
 
 If needed, further instructions are here: https://multipass.run/docs/installing-on-macos

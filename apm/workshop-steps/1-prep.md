@@ -81,12 +81,6 @@ brew install multipass
 
 If needed, further instructions are here: https://multipass.run/docs/installing-on-macos
 
-Do one final brew upgrade before spinning up VM: 
-
-```
-brew upgrade
-```
-
 ---
 
 #### <ins>Windows</ins>  

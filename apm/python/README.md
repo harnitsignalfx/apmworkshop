@@ -16,6 +16,9 @@ export OTEL_RESOURCE_ATTRIBUTES=service.name=py-otel-flask-server,deployment.env
 ## Send traces to the otlp grpc port (4317) of the locally running otel-collector 
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
 
+## Latest protobuf changes for opentelemetry
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+
 # Run and auto-instrument the python server application
 splunk-py-trace python3 flask-server.py
 ```
@@ -35,6 +38,9 @@ export OTEL_RESOURCE_ATTRIBUTES=service.name=py-otel-reqs-client,deployment.envi
 
 ## Send traces to the otlp grpc port (4317) of the locally running otel-collector 
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
+
+## Latest protobuf changes for opentelemetry
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 
 # Run and auto-instrument the python client application
 splunk-py-trace python3 python-requests.py

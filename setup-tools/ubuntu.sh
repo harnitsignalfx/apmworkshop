@@ -12,6 +12,7 @@ sudo apt install -y python3-pip
 
 #install docker
 sudo apt install -y docker.io
+sudo apt install -y docker-compose
 
 #install apache webserver
 sudo apt install -y apache2
@@ -23,6 +24,10 @@ splunk-py-trace-bootstrap
 
 #clone workshop
 git clone https://github.com/harnitsignalfx/apmworkshop
+
+#clone opentelemetry demo
+git clone https://github.com/open-telemetry/opentelemetry-demo.git  
+
 
 #clone okhttp-and-jedis and build it
 git clone https://github.com/signalfx/tracing-examples.git
